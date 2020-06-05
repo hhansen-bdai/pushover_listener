@@ -9,5 +9,5 @@ in the typical fashion, fill the config.json file with
 their information where they have been filled in with
 examples, and leaving blank the blank fields. Then run
 registration.py with your desired device name. After this,
-listener.py should process for incoming messages to that 
+listener.py should process incoming messages to that 
 device for as long as it's running
