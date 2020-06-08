@@ -14,6 +14,19 @@ class ReyClient(object):
     def openSocket(self):
         self.client.getWebSocketMessages(self.messageCallback)
 
+    def shutDownLights(self):
+        # STUB: Shut down uv lights through 
+        # Arduino
+        pass
+
+    def goHome(self):
+        # STUB: Send AVA base back to dock
+        pass
+
+    def setUpArduino(self):
+        # STUB: Set up arduino for UV patrol
+        pass
+
     def messageCallback(self, messageList):
     #Prcoess/do work with messageList!
         if(messageList):
@@ -24,12 +37,15 @@ class ReyClient(object):
                     "GBFB Building Status in ALARM" in message.title:
                         print('Fake emergency shut off initiated')
                         print('Fake shutting off the arduino now...')
+                        self.shutDownLights()
+                        self.goHome()
                         print('Fake shut off completed')
 
                 elif "GBFB Building now ARMED" in message.title and \
                     "GBFB Building Status Alarm CLEARED" in message.title:
                         print('Fake resuming normal operations')
                         print('Fake setting up arduino now...')
+                        self.setUpArduino()
                         print('Fake set up completed')
 
                 #Make sure to acknowledge messages with priority >= 2
