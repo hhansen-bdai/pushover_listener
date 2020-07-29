@@ -1,31 +1,20 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 # Code from https://github.com/jonogreenz/py-pushover-open-client
 
 from pushover_open_client import Client
+from arduino_comm import Messenger
 
 class ReyClient(object):
 
     def __init__(self, client):
         self.client = client
+        self.messenger = Messenger(None, None)
 
     def getOutstandingMessages(self):
         return self.client.getOutstandingMessages()
 
     def openSocket(self):
         self.client.getWebSocketMessages(self.messageCallback)
-
-    def shutDownLights(self):
-        # STUB: Shut down uv lights through 
-        # Arduino
-        pass
-
-    def goHome(self):
-        # STUB: Send AVA base back to dock
-        pass
-
-    def setUpArduino(self):
-        # STUB: Set up arduino for UV patrol
-        pass
 
     def messageCallback(self, messageList):
     #Prcoess/do work with messageList!
@@ -35,18 +24,17 @@ class ReyClient(object):
                 print("#{}\n{}\n{}".format(message.id, message.title, message.message))
                 if "GBFB Building now DISARMED" in message.title or \
                     "GBFB Building Status in ALARM" in message.title:
-                        print('Fake emergency shut off initiated')
-                        print('Fake shutting off the arduino now...')
-                        self.shutDownLights()
-                        self.goHome()
-                        print('Fake shut off completed')
+                        print('Shut off initiated')
+                        print('Shutting off lights now...')
+                        self.messenger.stopUVCLights()
+                        print('Shut off completed')
 
                 elif "GBFB Building now ARMED" in message.title and \
                     "GBFB Building Status Alarm CLEARED" in message.title:
-                        print('Fake resuming normal operations')
-                        print('Fake setting up arduino now...')
-                        self.setUpArduino()
-                        print('Fake set up completed')
+                        print('Resuming normal operations')
+                        print('Setting up lights now...')
+                        self.messenger.beginUVCLights()
+                        print('Set up completed')
 
                 #Make sure to acknowledge messages with priority >= 2
                 if(message.priority >= 2):
@@ -59,6 +47,10 @@ def main():
 
     # Setups with a device configuration
     client = ReyClient(Client("../.secrets/config.json"))
+
+    # ISet Messenger member to correct ip and port
+    client.messenger.ip = "172.18.0.50"
+    client.messenger.port = 8888
 
     # Get any messages sent before the client has started
     messageList = client.getOutstandingMessages()

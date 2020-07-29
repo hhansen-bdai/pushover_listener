@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 # Code from https://github.com/jonogreenz/py-pushover-open-client
 
 import argparse
