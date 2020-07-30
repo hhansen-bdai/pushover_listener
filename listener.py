@@ -29,12 +29,12 @@ class ReyClient(object):
                         self.messenger.stopUVCLights()
                         print('Shut off completed')
 
-                elif "GBFB Building now ARMED" in message.title and \
-                    "GBFB Building Status Alarm CLEARED" in message.title:
-                        print('Resuming normal operations')
-                        print('Setting up lights now...')
-                        self.messenger.beginUVCLights()
-                        print('Set up completed')
+                # elif "GBFB Building now ARMED" in message.title and \
+                #     "GBFB Building Status Alarm CLEARED" in message.title:
+                #         print('Resuming normal operations')
+                #         print('Setting up lights now...')
+                #         self.messenger.beginUVCLights()
+                #         print('Set up completed')
 
                 #Make sure to acknowledge messages with priority >= 2
                 if(message.priority >= 2):
