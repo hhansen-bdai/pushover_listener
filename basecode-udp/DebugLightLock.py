@@ -5,6 +5,7 @@
 
 import socket
 from builtins import bytes
+import select
 
 
 UDP_IP_host = "172.18.0.1"
@@ -19,18 +20,26 @@ UDP_PORT = 8888
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((UDP_IP_host, UDP_PORT))
 
+sock.settimeout(1)
+
 test_message = bytes(b"stesting123")
 
 
 print("Testing message passing between base and relay board.")
 
+sent = 1
 count = 1
+
 
 while count < 10:
         print("Message count: % s" % count)
+        sent = sent + 1
         sock.sendto(test_message, (UDP_IP_remote, UDP_PORT))
-        data, addr = sock.recvfrom(1024)
-        data = data.decode()
-        if data[0]:
-            print("Received message: {}".format(data))
+        try:
+            data, addr = sock.recvfrom(1024)
+            data = data.decode()
+            if data[0]:
+                    print("Received message: {}".format(data))
+        except:
+            print("No message received")
         count = count + 1

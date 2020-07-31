@@ -82,11 +82,7 @@ def main():
 	for key, values in tagList.items():
 		dic[values["name"].lower()] = key
 
-	# listoftags = ["a_1", "a_12", "a_2", "b_3", "b_34", "b_4", "b_1", "b_2", "b_3", "b_4", "c_1", "c_2", "d_3", "d_4", "d_1", "d_2"]
-
-	listoftags = ["a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "d_3", "d_4", "d_1", "d_2", "e_3", "e_4"]
-
-	listoftags = ["d_1", "d_2", "d_3", "d_4"]
+	listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "d_3", "d_4", "d_1", "d_2", "e_3", "e_4"]
 
 	# check and re-enter tag names till they are correct
 	wrongtags = 0
