@@ -25,7 +25,6 @@ class Messenger(object):
         while received == 0:
             print("Message count: % s" % count)
             sent = sent + 1
-            sock.sen
             sock.sendto(Message, (self.ip, self.port))
             try:
                 data, addr = sock.recvfrom(1024)
@@ -34,8 +33,8 @@ class Messenger(object):
                     print("Received message: {}".format(data))
                     received = 1
                     break
-                except:
-                    print("No message received, trying again")
+            except:
+                print("No message received, trying again")
                 count = count + 1
 
 

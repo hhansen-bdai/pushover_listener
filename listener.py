@@ -8,7 +8,7 @@ class ReyClient(object):
 
     def __init__(self, client):
         self.client = client
-        self.messenger = Messenger(None, None)
+        self.messenger = Messenger(None, None, None)
 
     def getOutstandingMessages(self):
         return self.client.getOutstandingMessages()
