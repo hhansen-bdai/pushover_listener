@@ -49,8 +49,9 @@ def main():
     client = ReyClient(Client("../.secrets/config.json"))
 
     # ISet Messenger member to correct ip and port
-    client.messenger.ip = "172.18.0.50"
+    client.messenger.ip = "172.18.0.50" # remote ip (where to send messages)
     client.messenger.port = 8888
+    client.messenger.host = "172.18.0.1" #host ip (where to listen)
 
     # Get any messages sent before the client has started
     messageList = client.getOutstandingMessages()

@@ -22,16 +22,18 @@ sock.bind((UDP_IP_host, UDP_PORT))
 
 sock.settimeout(1)
 
-test_message = bytes(b"stesting123")
+test_message = bytes(b"testing123")
 
 
 print("Testing message passing between base and relay board.")
 
 sent = 1
 count = 1
+received = 0
 
 
-while count < 10:
+
+while received == 0:
         print("Message count: % s" % count)
         sent = sent + 1
         sock.sendto(test_message, (UDP_IP_remote, UDP_PORT))
@@ -39,7 +41,9 @@ while count < 10:
             data, addr = sock.recvfrom(1024)
             data = data.decode()
             if data[0]:
-                    print("Received message: {}".format(data))
+                print("Received message: {}".format(data))
+                received = 1
+                break
         except:
             print("No message received")
         count = count + 1
