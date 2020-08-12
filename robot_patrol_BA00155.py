@@ -10,12 +10,17 @@ Copyright (c) Ava Robotics Inc. 2020, All Rights Reserved.
 
 import time
 import sys
-import robotutils
+import PatrolScripts.robotutils as robotutils
 import logging
 import datetime
 from datetime import date
 from getpass import getpass
 from tee import StdoutTee
+
+
+# Additional UVC control code
+from arduino_comm import Messenger
+
 
 logger = logging.getLogger(__name__)
 
@@ -117,7 +122,7 @@ def main():
 	print("---------------------------------------------")
  
 	duration = .1
-	sys.stdout.write("\nPerforming a single patrol route of Tags")
+	sys.stdout.write("\nPerforming a single patrol route of specified tags")
 	duration_in_secs = float(duration) * 3600
 
 	# set the patrol log file name
@@ -129,7 +134,21 @@ def main():
 	timespent = 0.0
 	starttime = time.time()
 
+
+	# Define the UVC Lights
+	UVCLights = Messenger(None,None,None) #remote ip, port, host ip
+	UVCLights.ip = "172.18.0.50"
+	UVCLights.port = 8888
+	UVCLights.host = "172.18.0.1"
+
 	with StdoutTee(filename, buff=1):
+
+		lightson = input("Turn on UVC Lights? (Y/N)")
+		if lightson == 'Y' or lightson == 'y':
+			print('\nTurning on UVC Lights')
+			UVCLights.beginUVCLights()
+		else:
+			print('\n Okay, no UVC Lights')
 
 		sys.stdout.write("\nStarted patrol")
 		sys.stdout.write("\n--------------")
@@ -193,7 +212,12 @@ def main():
 
 		sys.stdout.write("\nCompleted patrol")
 		sys.stdout.write("\n----------------")
-		sys.stdout.write("\nCompleted patroling for {} hours, and completed a total of {} iterations\n\n".format(duration, count-1))
+		sys.stdout.write("\nCompleted patrolling for {} hours, and completed a total of {} iterations\n\n".format(duration, count-1))
+
+		# turn off UVC lights
+		if lightson == 'Y' or lightson == 'y':
+			print('\nTurning off UVC Lights')
+			UVCLights.stopUVCLights()
 
 		#dock robot after patrol 
 		sys.stdout.write("\nReturning to dock.")

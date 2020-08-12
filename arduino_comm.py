@@ -41,8 +41,31 @@ class Messenger(object):
     def beginUVCLights(self):
         # turn on the UVC lights
         Message = bytes(b"b")
+        
+        # Keep sending command until lights turn off
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(Message, (self.ip, self.port))
+        sock.bind((self.host, self.port))
+        sock.settimeout(1) #non-blocking mode
+
+        # debug values
+        sent = 1
+        count = 1
+        received = 0
+
+        while received == 0:
+            print("Message count: % s" % count)
+            sent = sent + 1
+            sock.sendto(Message, (self.ip, self.port))
+            try:
+                data, addr = sock.recvfrom(1024)
+                data = data.decode()
+                if data[0]:
+                    print("Received message: {}".format(data))
+                    received = 1
+                    break
+            except:
+                print("No message received, trying again")
+                count = count + 1
 
     def testRelayComm(self):
         # board lights will flash fancy colors to confirm communication
