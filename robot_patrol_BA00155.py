@@ -54,10 +54,10 @@ def main():
 	# UN = input("Username: ")
 	# PS = getpass("Password: ")
 
-	RMS = "eft.ava8.net"
+	RMS = "base.ava8.net"
 	ID = "BA00155"
 	UN = "mitgbfb"
-	PS = "mitgbfb2020"
+	PS = "ap123"
 
 	print('\nConnecting to robot ',ID,' for patrol.')
 
