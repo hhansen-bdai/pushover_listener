@@ -126,8 +126,8 @@ def main():
 	duration_in_secs = float(duration) * 3600
 
 	# set the patrol log file name
-	cur_time = datetime.datetime.now().strftime("%Y-%m-%d %H_%M_%S")
-	filename='{} - Patrol Test Results - {}.txt'.format(ID.upper(),cur_time)
+	cur_time = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+	filename='{}_PatrolTestResults_{}.txt'.format(ID.upper(),cur_time)
 
 	# set variables before starting the patrol
 	count = 1

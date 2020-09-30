@@ -1,7 +1,7 @@
 
 import time
 import sys
-import robotutils
+import PatrolScripts.robotutils as robotutils
 import logging
 import datetime
 from datetime import date
@@ -63,8 +63,8 @@ def main():
     utils = robotutils.RobotUtils(RMS,UN,PS,ID)
 
     # set the patrol log file name
-    cur_time = datetime.datetime.now().strftime("%Y-%m-%d %H_%M_%S")
-    filename='{} - Trajectory Hist - {}.txt'.format(ID.upper(),cur_time)
+    cur_time = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+    filename='{}_TrajHist_{}.txt'.format(ID.upper(),cur_time)
     starttime = time.time()
 
     with StdoutTee(filename, buff=1):
