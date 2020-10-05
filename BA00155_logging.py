@@ -74,10 +74,11 @@ def main():
         while True:
             now = time.time()
             timespent = now - starttime
-            coord = utils.curRobotPosition()
-            # coord is a dict, add time and save
-            coord['Time'] = now
-            sys.stdout.write("\n{}".format(coord))
+            try:
+                coord = utils.curRobotPosition()
+                # coord is a dict, add time and save
+                coord['Time'] = now
+                sys.stdout.write("\n{}".format(coord))
             time.sleep(0.5)
        
 
