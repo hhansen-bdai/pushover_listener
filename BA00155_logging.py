@@ -71,7 +71,7 @@ def main():
 
         sys.stdout.write("\nTrajectory History")
         sys.stdout.write("\n--------------")
-        while True:
+        while True:                        
             now = time.time()
             timespent = now - starttime
             try:
@@ -79,7 +79,11 @@ def main():
                 # coord is a dict, add time and save
                 coord['Time'] = now
                 sys.stdout.write("\n{}".format(coord))
-            time.sleep(0.5)
+                time.sleep(0.5)
+            except TypeError:
+                time.sleep(0.5)
+            finally:
+                time.sleep(0.5)
        
 
 

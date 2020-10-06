@@ -99,7 +99,7 @@ def main():
 
     with StdoutTee(filename, buff=1):
 
-        lightson = input("Turn on UVC Lights? (Y/N)")
+        lightson = input("\nTurn on UVC Lights? (Y/N)")
         if lightson == 'Y' or lightson == 'y':
             print('\nTurning on UVC Lights')
             UVCLights.beginUVCLights()

@@ -87,7 +87,17 @@ def main():
 	for key, values in tagList.items():
 		dic[values["name"].lower()] = key
 
-	listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "d_3", "d_4", "d_1", "d_2", "e_3", "e_4"]
+	print('\nPlease specify the patrol route by aisles.')
+	aisles = input('\nWhat is the last occupied aisle? (choose: A/B/C/D)')
+	if aisles == 'A' or aisles =='a':
+		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4"]
+	elif aisles == 'B' or aisles == 'b':				
+		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4"]
+	elif aisles == 'C' or aisles == 'c':
+		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "d_3", "d_4"]
+	else:
+		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "d_3", "d_4", "d_1", "d_2", "e_3", "e_4"]
+
 
 	# check and re-enter tag names till they are correct
 	wrongtags = 0
@@ -143,7 +153,7 @@ def main():
 
 	with StdoutTee(filename, buff=1):
 
-		lightson = input("Turn on UVC Lights? (Y/N)")
+		lightson = input("\nTurn on UVC Lights? (Y/N)")
 		if lightson == 'Y' or lightson == 'y':
 			print('\nTurning on UVC Lights')
 			UVCLights.beginUVCLights()
