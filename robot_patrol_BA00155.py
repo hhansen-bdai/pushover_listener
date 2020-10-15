@@ -90,11 +90,11 @@ def main():
 	print('\nPlease specify the patrol route by aisles.')
 	aisles = input('\nWhat is the last occupied aisle? (choose: A/B/C/D)')
 	if aisles == 'A' or aisles =='a':
-		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4"]
+		listoftags = ["entering_staging", "a_1", "a_2", "a_1"]
 	elif aisles == 'B' or aisles == 'b':				
-		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4"]
+		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "b_1"]
 	elif aisles == 'C' or aisles == 'c':
-		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "d_3", "d_4"]
+		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "c_1"]
 	else:
 		listoftags = ["entering_staging", "a_1", "a_2", "b_3", "b_4", "b_1", "b_2", "c_3", "c_4", "c_1", "c_2", "d_3", "d_4", "d_1", "d_2", "e_3", "e_4"]
 
